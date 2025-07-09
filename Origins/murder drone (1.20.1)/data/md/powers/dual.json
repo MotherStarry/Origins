@@ -1,0 +1,206 @@
+{
+    "name": "Dual Wielder",
+    "description": "When dual wielding swords you deal 50% more dmg. Unfortunately for you, you arent as skilled with other weapons making them deal -30% damage while swords are just less effective.",
+    "type": "origins:multiple",
+    "oof": {
+        "type": "origins:modify_damage_dealt",
+        "bientity_condition": {
+            "type": "origins:actor_condition",
+            "condition": {
+                "type": "origins:equipped_item",
+                "equipment_slot": "mainhand",
+                "item_condition": {
+                    "inverted": true,
+                    "type": "origins:ingredient",
+                    "ingredient": {
+                        "tag": "minecraft:swords"
+                    }
+                }
+            }
+        },
+        "modifier": {
+            "operation": "multiply_total_additive",
+            "value": -0.3,
+            "name": ""
+        }
+    },
+    "bonus": {
+        "condition": {
+            "type": "origins:or",
+            "conditions": [
+                {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "mainhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:iron_sword"
+                                }
+                            }
+                        },
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "offhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:iron_sword"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "mainhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:diamond_sword"
+                                }
+                            }
+                        },
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "offhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:diamond_sword"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "mainhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:netherite_sword"
+                                }
+                            }
+                        },
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "offhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:netherite_sword"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "type": "origins:modify_damage_dealt",
+        "modifier": {
+            "operation": "multiply_total_additive",
+            "value": 0.5
+        }
+    },
+    "notify": {
+        "condition": {
+            "type": "origins:or",
+            "conditions": [
+                {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "mainhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:iron_sword"
+                                }
+                            }
+                        },
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "offhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:iron_sword"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "mainhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:diamond_sword"
+                                }
+                            }
+                        },
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "offhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:diamond_sword"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "mainhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:netherite_sword"
+                                }
+                            }
+                        },
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "offhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "minecraft:netherite_sword"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "type": "origins:action_over_time",
+        "interval": 20,
+        "rising_action": {
+            "type": "origins:execute_command",
+            "command": "/title @s actionbar [\"\",{\"text\":\"Dual Wielding \",\"color\":\"#b00bff\"},{\"text\":\"On\",\"color\":\"green\"}]"
+        },
+        "falling_action": {
+            "type": "origins:execute_command",
+            "command": "/title @s actionbar [\"\",{\"text\":\"Dual Wielding \",\"color\":\"#b00bff\"},{\"text\":\"Off\",\"color\":\"red\"}]"
+        }
+    }
+}

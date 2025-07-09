@@ -1,0 +1,26 @@
+{
+    "hidden": true,
+    "type": "origins:multiple",
+    "error": {
+        "condition": {
+            "type": "origins:relative_health",
+            "comparison": "<",
+            "compare_to": 0.5
+        },
+        "type": "origins:action_over_time",
+        "interval": 20,
+        "rising_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s title [\"\",{\"text\":\"FATAL ERROR\",\"bold\":true,\"color\":\"dark_red\"}]"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s subtitle [\"\",{\"text\":\"Health below 50%\",\"color\":\"red\",\"bold\":true}]"
+                }
+            ]
+        }
+    }
+}

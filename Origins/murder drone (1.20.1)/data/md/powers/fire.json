@@ -1,0 +1,25 @@
+{
+    "hidden": true,
+    "type": "origins:modify_damage_taken",
+    "damage_condition": {
+        "type": "origins:or",
+        "conditions": [
+            {
+                "type": "origins:name",
+                "name": "inFire"
+            },
+            {
+                "type": "origins:name",
+                "name": "onfire"
+            },
+            {
+                "type": "origins:name",
+                "name": "hotfloor"
+            }
+        ]
+    },
+    "modifier": {
+        "operation": "multiply_base_additive",
+        "value": 1
+    }
+}

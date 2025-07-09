@@ -1,0 +1,16 @@
+{
+    "name": "No ranged",
+    "description": "You can't really get used to using bows and crossbows",
+    "type": "origins:prevent_item_use",
+    "item_condition": {
+        "type": "origins:ingredient",
+        "ingredient": [
+            {
+                "item": "crossbow"
+            },
+            {
+                "item": "bow"
+            }
+        ]
+    }
+}

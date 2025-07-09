@@ -1,0 +1,155 @@
+{
+    "name": "Overheat",
+    "description": "Unfortunately your system has not been properly designed for the hotter biomes, making you overheat and burn after meltdown when too much time is spent in hot biomes.",
+    "type": "origins:multiple",
+    "res": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 720,
+        "start_value": 0,
+        "hud_render": {
+            "should_render": true,
+            "bar_index": 7
+        }
+    },
+    "hot": {
+        "condition": {
+            "type": "origins:biome",
+            "condition": {
+                "type": "origins:temperature",
+                "comparison": ">=",
+                "compare_to": 1.1
+            }
+        },
+        "type": "origins:action_over_time",
+        "interval": 20,
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "*:*_res",
+            "change": 4,
+            "operation": "add"
+        },
+        "rising_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s title [\"\",{\"text\":\"Warning\",\"color\":\"red\",\"bold\":true}]"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s subtitle [\"\",{\"text\":\"Biome temperature too high\",\"color\":\"gold\",\"bold\":true}]"
+                }
+            ]
+        }
+    },
+    "cooloff": {
+        "condition": {
+            "inverted": true,
+            "type": "origins:biome",
+            "condition": {
+                "type": "origins:temperature",
+                "comparison": ">=",
+                "compare_to": 1.1
+            }
+        },
+        "type": "origins:action_over_time",
+        "interval": 20,
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "*:*_res",
+            "change": -2,
+            "operation": "add"
+        }
+    },
+    "overheating": {
+        "condition": {
+            "type": "origins:resource",
+            "resource": "*:*_res",
+            "comparison": "==",
+            "compare_to": 720
+        },
+        "type": "origins:action_over_time",
+        "interval": 10,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:apply_effect",
+                    "effects": [
+                        {
+                            "effect": "slowness",
+                            "duration": 50,
+                            "amplifier": 2,
+                            "is_ambient": true,
+                            "show_particles": false,
+                            "show_icon": true
+                        },
+                        {
+                            "effect": "weakness",
+                            "duration": 50,
+                            "amplifier": 2,
+                            "is_ambient": true,
+                            "show_particles": false,
+                            "show_icon": true
+                        }
+                    ]
+                },
+                {
+                    "type": "origins:exhaust",
+                    "amount": 0.406
+                }
+            ]
+        },
+        "rising_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s title [\"\",{\"text\":\"Warning\",\"color\":\"red\",\"bold\":true}]"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s subtitle [\"\",{\"text\":\"System Overheating\",\"color\":\"gold\",\"bold\":true}]"
+                }
+            ]
+        }
+    },
+    "meltdown": {
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:resource",
+                    "resource": "*:*_res",
+                    "comparison": "==",
+                    "compare_to": 720
+                },
+                {
+                    "type": "origins:food_level",
+                    "comparison": "<=",
+                    "compare_to": 6
+                }
+            ]
+        },
+        "type": "origins:action_over_time",
+        "interval": 20,
+        "entity_action": {
+            "type": "origins:set_on_fire",
+            "duration": 25
+        },
+        "rising_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s title [\"\",{\"text\":\"FATAL ERROR\",\"color\":\"dark_red\",\"bold\":true}]"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s subtitle [\"\",{\"text\":\"SYSTEM MELTDOWN\",\"color\":\"red\",\"bold\":true}]"
+                }
+            ]
+        }
+    }
+}

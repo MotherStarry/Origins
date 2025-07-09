@@ -1,0 +1,25 @@
+{
+    "name": "Murder Drone",
+    "description": "You are a machine made for disassembling corrupt worker drones.",
+    "powers": [
+        "md:bows",
+        "md:car_crash",
+        "md:cosmetic",
+        "md:dual",
+        "md:faster",
+        "md:fire",
+        "md:flap",
+        "md:murder",
+        "md:nah",
+        "md:oil",
+        "md:overheat",
+        "md:projectiles",
+        "md:wateh",
+        "md:wings"
+    ],
+    "icon": {
+        "item": "minecraft:netherite_sword"
+    },
+    "unchoosable": false,
+    "impact": 3
+}

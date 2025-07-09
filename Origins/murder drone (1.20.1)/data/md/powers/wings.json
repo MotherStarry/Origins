@@ -1,0 +1,6 @@
+{
+    "name": "Massive Wings",
+    "description": "You have massive built-in wings allowing you to soar through the skies",
+    "type": "origins:elytra_flight",
+    "render_elytra": true
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Hungy",
+    "description": "You are not power-efficient meaning you need to eat more often",
+    "condition": {
+        "inverted": true,
+        "type": "origins:resource",
+        "resource": "*:overheat_res",
+        "comparison": "==",
+        "compare_to": 720
+    },
+    "type": "origins:modify_exhaustion",
+    "modifier": {
+        "operation": "multiply_base_additive",
+        "value": 0.15
+    }
+}

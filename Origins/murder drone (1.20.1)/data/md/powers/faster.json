@@ -1,0 +1,11 @@
+{
+    "name": "Quick runner",
+    "description": "As a predator you gotta be quick to catch-up with your prey.",
+    "type": "origins:attribute",
+    "modifier": {
+        "attribute": "generic.movement_speed",
+        "operation": "addition",
+        "value": 0.07
+    },
+    "update_health": true
+}

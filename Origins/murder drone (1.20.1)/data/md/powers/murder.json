@@ -1,0 +1,72 @@
+{
+    "name": "Tasty Flesh",
+    "description": "While you are used to feeding on the worker drones you unfortunately had to adjust to eating living flesh which is somehow working out?",
+    "type": "origins:multiple",
+    "preparethyself": {
+        "type": "origins:self_action_on_kill",
+        "target_condition": {
+            "type": "origins:living"
+        },
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:feed",
+                    "food": 5,
+                    "saturation": 2
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "/title @s actionbar [\"\",{\"text\":\"Yummy :3\",\"bold\":true,\"color\":\"#b00bff\"}]"
+                }
+            ]
+        },
+        "cooldown": 1
+    },
+    "notasgood": {
+        "type": "origins:modify_food",
+        "food_modifier": {
+            "operation": "multiply_base_additive",
+            "value": -0.2
+        },
+        "food_modifiers": [
+            {
+                "operation": "multiply_base_additive",
+                "value": -0.25
+            }
+        ]
+    },
+    "carnivore": {
+        "type": "origins:prevent_item_use",
+        "item_condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "inverted": true,
+                    "type": "origins:or",
+                    "conditions": [
+                        {
+                            "type": "origins:ingredient",
+                            "ingredient": {
+                                "tag": "origins:meat"
+                            }
+                        },
+                        {
+                            "type": "origins:meat"
+                        }
+                    ]
+                },
+                {
+                    "type": "origins:food"
+                },
+                {
+                    "inverted": true,
+                    "type": "origins:ingredient",
+                    "ingredient": {
+                        "tag": "origins:ignore_diet"
+                    }
+                }
+            ]
+        }
+    }
+}
