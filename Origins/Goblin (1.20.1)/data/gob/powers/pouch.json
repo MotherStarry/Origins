@@ -1,0 +1,178 @@
+{
+    "name": "Pouch",
+    "description": "You have a special pouch for gold :D",
+    "type": "origins:multiple",
+    "gold": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 320,
+        "start_value": 0,
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+            "bar_index": 14
+        }
+    },
+    "deth": {
+        "type": "origins:action_on_callback",
+        "execute_chosen_when_orb": true,
+        "entity_action_respawned": {
+            "type": "origins:choice",
+            "actions": [
+                {
+                    "weight": 200,
+                    "element": {
+                        "type": "origins:change_resource",
+                        "resource": "*:pouch_gold",
+                        "change": -80,
+                        "operation": "add"
+                    }
+                },
+                {
+                    "weight": 475,
+                    "element": {
+                        "type": "origins:change_resource",
+                        "resource": "*:pouch_gold",
+                        "change": -160,
+                        "operation": "add"
+                    }
+                },
+                {
+                    "weight": 200,
+                    "element": {
+                        "type": "origins:change_resource",
+                        "resource": "*:pouch_gold",
+                        "change": -240,
+                        "operation": "add"
+                    }
+                },
+                {
+                    "weight": 125,
+                    "element": {
+                        "type": "origins:change_resource",
+                        "resource": "*:pouch_gold",
+                        "change": -320,
+                        "operation": "add"
+                    }
+                }
+            ]
+        }
+    },
+    "in": {
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:equipped_item",
+                    "equipment_slot": "offhand",
+                    "item_condition": {
+                        "type": "origins:ingredient",
+                        "ingredient": {
+                            "item": "gold_ingot"
+                        }
+                    }
+                },
+                {
+                    "inverted": true,
+                    "type": "origins:resource",
+                    "resource": "*:pouch_gold",
+                    "comparison": "==",
+                    "compare_to": 320
+                },
+                {
+                    "type": "origins:power_active",
+                    "power": "*:pouch_key"
+                }
+            ]
+        },
+        "type": "origins:action_over_time",
+        "interval": 5,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:change_resource",
+                    "resource": "*:pouch_gold",
+                    "change": 1,
+                    "operation": "add"
+                },
+                {
+                    "type": "origins:equipped_item_action",
+                    "equipment_slot": "offhand",
+                    "action": {
+                        "type": "origins:consume",
+                        "amount": 1
+                    }
+                }
+            ]
+        }
+    },
+    "out": {
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:or",
+                    "conditions": [
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "offhand",
+                            "item_condition": {
+                                "type": "origins:empty"
+                            }
+                        },
+                        {
+                            "type": "origins:equipped_item",
+                            "equipment_slot": "offhand",
+                            "item_condition": {
+                                "type": "origins:ingredient",
+                                "ingredient": {
+                                    "item": "gold_ingot"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "inverted": true,
+                    "type": "origins:resource",
+                    "resource": "*:pouch_gold",
+                    "comparison": "==",
+                    "compare_to": 0
+                },
+                {
+                    "inverted": true,
+                    "type": "origins:power_active",
+                    "power": "*:pouch_key"
+                }
+            ]
+        },
+        "type": "origins:action_over_time",
+        "interval": 5,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:give",
+                    "stack": {
+                        "item": "gold_ingot",
+                        "amount": 1
+                    },
+                    "preferred_slot": "offhand"
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "*:pouch_gold",
+                    "change": -1,
+                    "operation": "add"
+                }
+            ]
+        }
+    },
+    "key": {
+        "type": "origins:toggle",
+        "active_by_default": true,
+        "key": "primary",
+        "retain_state": true
+    }
+}

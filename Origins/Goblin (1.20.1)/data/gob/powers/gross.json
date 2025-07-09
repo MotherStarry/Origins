@@ -1,0 +1,12 @@
+{
+    "name": "Eww... Gross!",
+    "description": "Your appearance disgusts the villagers making it impossible for you to trade with them",
+    "type": "origins:prevent_entity_use",
+    "bientity_condition": {
+        "type": "origins:target_condition",
+        "condition": {
+            "type": "apoli:entity_type",
+            "entity_type": "minecraft:villager"
+        }
+    }
+}

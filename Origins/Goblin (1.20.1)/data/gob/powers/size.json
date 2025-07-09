@@ -1,0 +1,40 @@
+{
+    "name": "Small",
+    "description": "You are a very small creature standing at 1 block.",
+    "type": "origins:action_on_callback",
+    "execute_chosen_when_orb": true,
+    "entity_action_lost": {
+        "type": "origins:execute_command",
+        "command": "scale reset @s"
+    },
+    "entity_action_added": {
+        "type": "origins:delay",
+        "action": {
+            "type": "origins:choice",
+            "actions": [
+                {
+                    "element": {
+                        "type": "origins:execute_command",
+                        "command": "function gob:tall"
+                    },
+                    "weight": 25
+                },
+                {
+                    "element": {
+                        "type": "origins:execute_command",
+                        "command": "function gob:medium"
+                    },
+                    "weight": 50
+                },
+                {
+                    "element": {
+                        "type": "origins:execute_command",
+                        "command": "function gob:small"
+                    },
+                    "weight": 25
+                }
+            ]
+        },
+        "ticks": 1
+    }
+}

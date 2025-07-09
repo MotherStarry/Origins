@@ -1,0 +1,15 @@
+{
+    "name": "Fragile",
+    "description": "You have less health than a regular player",
+    "badges": [
+        {
+            "type": "origins:tooltip",
+            "text": "reduces health by 2.5 hearts"
+        }
+    ],
+    "type": "origins:model_color",
+    "red": 0.698,
+    "green": 0.85,
+    "blue": 0.492,
+    "alpha": 1
+}

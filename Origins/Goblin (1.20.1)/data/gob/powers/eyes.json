@@ -1,0 +1,6 @@
+{
+    "name": "Adapted Eyes",
+    "description": "Your eyes have very well adapted to the darkness of the caves",
+    "type": "origins:night_vision",
+    "strength": 0.35
+}

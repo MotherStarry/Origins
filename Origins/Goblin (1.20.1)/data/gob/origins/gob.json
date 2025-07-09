@@ -1,0 +1,23 @@
+{
+    "name": "Goblin",
+    "description": "A short green human-like creature. ",
+    "powers": [
+        "gob:armor",
+        "gob:eyes",
+        "gob:fall",
+        "gob:fast",
+        "gob:flesh",
+        "gob:food",
+        "gob:gross",
+        "gob:lucky",
+        "gob:pouch",
+        "gob:size",
+        "gob:skin",
+        "gob:sneaky"
+    ],
+    "icon": {
+        "item": "gold_ingot",
+        "amount": 1
+    },
+    "impact": 2
+}

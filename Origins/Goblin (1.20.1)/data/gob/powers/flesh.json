@@ -1,0 +1,9 @@
+{
+    "name": "Strong stomach",
+    "description": "After eating a lot of rotten flesh your stomach has grown resistant to negative effects such as poison and hunger",
+    "type": "origins:effect_immunity",
+    "effects": [
+        "poison",
+        "hunger"
+    ]
+}
