@@ -1,0 +1,104 @@
+{
+    "name": "Striker Module",
+    "description": "You have an in-built cannon that allows you to shoot arrows with high precision. Putting an arrow in off-hand stores it in your in-built cannon: activating primary ability allows you to shoot stored arrows (At a speed that deals 5 hearts of damage) with high power and velocity. (Cooldown: 5 seconds)",
+    "type": "origins:multiple",
+    "storage": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 5,
+        "start_value": 0,
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/huang/resource_bar_02.png",
+            "bar_index": 13
+        },
+        "min_action": {
+            "type": "origins:execute_command",
+            "command": "/tellraw @s [\"\",{\"text\":\"[LUM1/WARN]: Striker Module out of ammunition, please reload.\",\"color\":\"gold\"}]"
+        }
+    },
+    "load": {
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:equipped_item",
+                    "equipment_slot": "offhand",
+                    "item_condition": {
+                        "type": "origins:ingredient",
+                        "ingredient": {
+                            "item": "minecraft:arrow"
+                        }
+                    }
+                },
+                {
+                    "type": "origins:resource",
+                    "resource": "*:*_storage",
+                    "comparison": "!=",
+                    "compare_to": 5
+                }
+            ]
+        },
+        "type": "origins:action_over_time",
+        "interval": 20,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:modify_resource",
+                    "resource": "*:*_storage",
+                    "modifier": {
+                        "operation": "add_base_early",
+                        "value": 1
+                    }
+                },
+                {
+                    "type": "origins:equipped_item_action",
+                    "equipment_slot": "offhand",
+                    "action": {
+                        "type": "origins:consume",
+                        "amount": 1
+                    }
+                }
+            ]
+        }
+    },
+    "fire": {
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:resource",
+                    "resource": "*:*_storage",
+                    "comparison": "!=",
+                    "compare_to": 0
+                }
+            ]
+        },
+        "type": "origins:fire_projectile",
+        "entity_type": "minecraft:arrow",
+        "cooldown": 100,
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+            "bar_index": 2
+        },
+        "count": 1,
+        "interval": 0,
+        "start_delay": 0,
+        "speed": 5,
+        "divergence": 0,
+        "sound": "item.crossbow.shoot",
+        "key": {
+            "key": "key.origins.primary_active"
+        },
+        "shooter_action": {
+            "type": "origins:modify_resource",
+            "resource": "*:*_storage",
+            "modifier": {
+                "operation": "add_base_early",
+                "value": -1
+            }
+        }
+    }
+}

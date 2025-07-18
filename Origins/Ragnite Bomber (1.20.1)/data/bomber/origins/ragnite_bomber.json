@@ -1,0 +1,19 @@
+{
+    "name": "Ragnite Bomber",
+    "description": "A mechanized being birthed with intent to kill, the Ragnite Bomber has been corrupted with the power it once yielded for destruction, giving him a semblance of intelligence and free will. As they scour the now-empty battlefields, they have no other goal in mind but to wander in search of self.",
+    "powers": [
+        "bomber:being",
+        "bomber:chassis",
+        "bomber:companion",
+        "bomber:efficiency",
+        "bomber:frame",
+        "bomber:module",
+        "bomber:pulse",
+        "bomber:skies",
+        "bomber:striker"
+    ],
+    "icon": {
+        "item": "minecraft:tnt"
+    },
+    "impact": 3
+}

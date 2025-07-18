@@ -1,0 +1,127 @@
+{
+    "name": "Internal Companion",
+    "description": "You have a companion called LUM1 built into you. She will notify you in certain sistuations but also say something once in a while!",
+    "type": "origins:multiple",
+    "low_food": {
+        "condition": {
+            "type": "origins:food_level",
+            "comparison": "<=",
+            "compare_to": 6
+        },
+        "type": "origins:action_over_time",
+        "interval": 20,
+        "rising_action": {
+            "type": "origins:execute_command",
+            "command": "/tellraw @s [\"\",{\"text\":\"[LUM1/WARN]: Fuel cell has reached 25%. Please refill the fuel cell.\",\"color\":\"gold\"}]"
+        }
+    },
+    "starving": {
+        "condition": {
+            "type": "origins:food_level",
+            "comparison": "==",
+            "compare_to": 0
+        },
+        "type": "origins:action_over_time",
+        "interval": 20,
+        "rising_action": {
+            "type": "origins:execute_command",
+            "command": "/tellraw @s [\"\",{\"text\":\"[LUM1/ERROR]: Fuel cell has been drained. Activating internal canibilization. Please provide fuel ASAP.\",\"color\":\"red\"}]"
+        }
+    },
+    "low_health": {
+        "condition": {
+            "type": "origins:health",
+            "comparison": "<=",
+            "compare_to": 5
+        },
+        "type": "origins:action_over_time",
+        "interval": 20,
+        "rising_action": {
+            "type": "origins:chance",
+            "chance": 0.5,
+            "action": {
+                "type": "origins:execute_command",
+                "command": "/tellraw @s [\"\",{\"text\":\"[LUM1/ERROR]: Physical conditions below acceptable norms.\",\"color\":\"red\"}]"
+            },
+            "fail_action": {
+                "type": "origins:execute_command",
+                "command": "/tellraw @s [\"\",{\"text\":\"[LUM1/ERROR]: Hull has been compromized. Emergency repairs required ASAP.\",\"color\":\"red\"}]"
+            }
+        }
+    },
+    "random_talk": {
+        "type": "origins:action_over_time",
+        "interval": 6000,
+        "entity_action": {
+            "type": "origins:chance",
+            "chance": 0.33,
+            "action": {
+                "type": "origins:choice",
+                "actions": [
+                    {
+                        "weight": 1,
+                        "element": {
+                            "type": "origins:execute_command",
+                            "command": "/tellraw @s [\"[LUM1/INFO]: Radar dish offline. Unable to contact Field Base.\"]"
+                        }
+                    },
+                    {
+                        "weight": 1,
+                        "element": {
+                            "type": "origins:execute_command",
+                            "command": "/tellraw @s [\"\",{\"text\":\"[LUM1/WARN]: Hostile entity detected.\",\"color\":\"gold\"}]"
+                        }
+                    },
+                    {
+                        "weight": 1,
+                        "element": {
+                            "type": "origins:execute_command",
+                            "command": "/tellraw @s [\"\",{\"text\":\"[LUM1/WARN]: Unable to determine your location.\",\"color\":\"gold\"}]"
+                        }
+                    },
+                    {
+                        "weight": 1,
+                        "element": {
+                            "type": "origins:execute_command",
+                            "command": "/tellraw @s [\"\",{\"text\":\"[LUM1/ERROR]: Cannot connect to satellite array\",\"color\":\"red\"}]"
+                        }
+                    },
+                    {
+                        "weight": 1,
+                        "element": {
+                            "type": "origins:execute_command",
+                            "command": "/tellraw @s [\"[LUM1/INFO]: Temperature fluctuation minimal\"]"
+                        }
+                    },
+                    {
+                        "weight": 1,
+                        "element": {
+                            "type": "origins:execute_command",
+                            "command": "/tellraw @s [\"[LUM1/INFO]: Cleaning memory banks.\"]"
+                        }
+                    }
+                ]
+            },
+            "fail_action": {
+                "type": "origins:nothing"
+            }
+        }
+    },
+    "joining_game": {
+        "type": "origins:action_on_callback",
+        "execute_chosen_when_orb": true,
+        "entity_action_added": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "/tellraw @s [\"[LUM1/INFO]: Checking currently active missions...\\n\",{\"text\":\"[LUM1/WARN]: No active missions found. Please return to base.\",\"color\":\"gold\"}]"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "/tellraw @s [\"[LUM1/INFO]: Checking currently active missions...\\n\",{\"text\":\"[LUM1/WARN]: No active missions found. Please return to base.\",\"color\":\"gold\"}]"
+                }
+            ]
+        }
+    }
+}

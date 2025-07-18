@@ -1,0 +1,37 @@
+{
+    "name": "Stealth Chassis",
+    "description": "You are a lightweight stealth bomber, as such your specialized frame isn't sturdy and does not allow you to outfit yourself with heavy armor. You can't wear armor that is better than chainmail, and you have 7.5 hearts, and are slightly smaller.",
+    "type": "origins:multiple",
+    "health": {
+        "type": "origins:attribute",
+        "modifier": {
+            "attribute": "generic.max_health",
+            "operation": "addition",
+            "value": -5
+        },
+        "update_health": true
+    },
+    "armor_restrictions": {
+        "type": "origins:restrict_armor",
+        "head": {
+            "type": "origins:armor_value",
+            "comparison": ">",
+            "compare_to": 2
+        },
+        "chest": {
+            "type": "origins:armor_value",
+            "comparison": ">",
+            "compare_to": 5
+        },
+        "legs": {
+            "type": "origins:armor_value",
+            "comparison": ">",
+            "compare_to": 4
+        },
+        "feet": {
+            "type": "origins:armor_value",
+            "comparison": ">",
+            "compare_to": 1
+        }
+    }
+}

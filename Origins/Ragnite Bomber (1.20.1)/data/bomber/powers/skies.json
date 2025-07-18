@@ -1,0 +1,30 @@
+{
+    "name": "Built for the skies",
+    "description": "You have an in-built elytra and you take drastically reduced fall and kinetic damage (75%), but you have permanent weakness V.",
+    "type": "origins:multiple",
+    "elytra": {
+        "type": "origins:elytra_flight",
+        "render_elytra": true
+    },
+    "kinetic_damage": {
+        "type": "origins:modify_damage_taken",
+        "modifier": {
+            "operation": "multiply_base_additive",
+            "value": -0.75
+        }
+    },
+    "weakness": {
+        "type": "origins:action_over_time",
+        "interval": 60,
+        "entity_action": {
+            "type": "origins:apply_effect",
+            "effect": {
+                "effect": "weakness",
+                "duration": 6000,
+                "amplifier": 4,
+                "show_particles": false,
+                "show_icon": false
+            }
+        }
+    }
+}

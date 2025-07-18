@@ -1,0 +1,9 @@
+{
+    "pack": {
+        "name": "Ragnite Bomber",
+        "id": "bomber",
+        "pack_format": 15,
+        "version": "1.0.0",
+        "description": "A mechanized being birthed with intent to kill."
+    }
+}
