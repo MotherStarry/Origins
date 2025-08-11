@@ -1,98 +1,113 @@
 {
     "name": "Ragnite Pulse",
-    "description": "Launch ragnite bomb from your chassis, launching a a beam that has short range, explodes upon contact that deals double normal TNT damage.",
-    "type": "origins:active_self",
-    "entity_action": {
-        "type": "origins:raycast",
-        "distance": 32,
-        "block": true,
-        "entity": true,
-        "shape_type": "collider",
-        "fluid_handling": "any",
-        "bientity_action": {
-            "type": "origins:target_action",
-            "action": {
-                "type": "origins:and",
-                "actions": [
-                    {
-                        "type": "origins:explode",
-                        "power": 12,
-                        "destruction_type": "none",
-                        "damage_self": true
-                    },
-                    {
-                        "type": "origins:play_sound",
-                        "sound": "item.trident.thunder",
-                        "volume": 16,
-                        "pitch": 0.4
-                    },
-                    {
-                        "type": "origins:spawn_particles",
-                        "particle": "minecraft:end_rod",
-                        "count": 3000,
-                        "speed": 1,
-                        "spread": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
+    "description": "Launch ragnite pulse from your chassis, launching a beam that has short range, explodes upon contact that deals double normal TNT damage.",
+    "type": "origing:multiple",
+    "beam": {
+        "type": "origins:active_self",
+        "entity_action": {
+            "type": "origins:raycast",
+            "distance": 32,
+            "block": true,
+            "entity": true,
+            "shape_type": "collider",
+            "fluid_handling": "any",
+            "bientity_action": {
+                "type": "origins:target_action",
+                "action": {
+                    "type": "origins:and",
+                    "actions": [
+                        {
+                            "type": "origins:explode",
+                            "power": 12,
+                            "destruction_type": "none",
+                            "damage_self": true
+                        },
+                        {
+                            "type": "origins:play_sound",
+                            "sound": "item.trident.thunder",
+                            "volume": 16,
+                            "pitch": 0.4
+                        },
+                        {
+                            "type": "origins:spawn_particles",
+                            "particle": "minecraft:end_rod",
+                            "count": 3000,
+                            "speed": 1,
+                            "spread": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            }
                         }
-                    }
-                ]
-            }
-        },
-        "block_action": {
-            "type": "origins:and",
-            "actions": [
-                {
-                    "type": "origins:offset",
-                    "action": {
-                        "type": "origins:explode",
-                        "power": 12,
-                        "destruction_type": "none",
-                        "damage_self": false
-                    },
-                    "y": 1
-                },
-                {
-                    "type": "origins:execute_command",
-                    "command": "/particle minecraft:end_rod ~ ~ ~ 0 0 0 1 3000"
-                },
-                {
-                    "type": "origins:execute_command",
-                    "command": "/playsound minecraft:item.trident.thunder block @s ~ ~ ~ 16 0.4"
+                    ]
                 }
-            ]
-        },
-        "miss_action": {
-            "type": "origins:chance",
-            "chance": 0.2,
-            "action": {
+            },
+            "block_action": {
                 "type": "origins:and",
                 "actions": [
                     {
-                        "type": "origins:execute_command",
-                        "command": "/tellraw @s [\"[LUM1/INFO]: Ragnite Pulse shot missed\"]"
+                        "type": "origins:offset",
+                        "action": {
+                            "type": "origins:explode",
+                            "power": 12,
+                            "destruction_type": "none",
+                            "damage_self": false
+                        },
+                        "y": 1
                     },
                     {
                         "type": "origins:execute_command",
-                        "command": "/tellraw @s [\"[LUM1/INFO]: LEARN TO AIM\"]"
+                        "command": "/particle minecraft:end_rod ~ ~ ~ 0 0 0 1 3000"
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "/playsound minecraft:item.trident.thunder block @s ~ ~ ~ 16 0.4"
                     }
                 ]
             },
-            "fail_action": {
-                "type": "origins:execute_command",
-                "command": "/tellraw @s [\"[LUM1/INFO]: Ragnite Pulse shot missed\"]"
-            }
+            "miss_action": {
+                "type": "origins:chance",
+                "chance": 0.2,
+                "action": {
+                    "type": "origins:and",
+                    "actions": [
+                        {
+                            "type": "origins:execute_command",
+                            "command": "/tellraw @s [\"[LUM1/INFO]: Ragnite Pulse shot missed\"]"
+                        },
+                        {
+                            "type": "origins:execute_command",
+                            "command": "/tellraw @s [\"[LUM1/INFO]: LEARN TO AIM\"]"
+                        }
+                    ]
+                },
+                "fail_action": {
+                    "type": "origins:execute_command",
+                    "command": "/tellraw @s [\"[LUM1/INFO]: Ragnite Pulse shot missed\"]"
+                }
+            },
+            "command_along_ray_only_on_hit": true
         },
-        "command_along_ray_only_on_hit": true
+        "cooldown": 300,
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+            "bar_index": 0
+        },
+        "key": {
+            "key": "key.origins.ternary_active"
+        }
     },
-    "cooldown": 300,
-    "hud_render": {
-        "should_render": true,
-        "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
-        "bar_index": 0
-    },
-    "key": {
-        "key": "key.origins.ternary_active"
+    "extra_dmg": {
+        "type": "origins:modify_damage_taken",
+        "damage_condition": {
+            "type": "origins:name",
+            "name": "explosion"
+        },
+        "modifier": {
+            "name": "More vulnerable to explosions",
+            "operation": "multiply_base_additive",
+            "value": 1
+        }
     }
 }
