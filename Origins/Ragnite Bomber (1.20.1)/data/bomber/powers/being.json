@@ -1,6 +1,6 @@
 {
     "name": "Mechanized Being",
-    "description": "You are an automaton, as such you are incapable of ingesting food but you are also never affected by hunger. You can't heal naturally or using potions, but can consume metals to heal yourself (Copper 0.5 hearts, iron 1 heart, gold 2 hearts), with ingots healing more than raw ( copper ingot 1 heart, iron ingot 2.5 hearts, gold ingot 5 hearts), and you are immune to poison, wither and instant harming effects.",
+    "description": "You are an automaton, as such you are incapable of ingesting food. You can't heal using potions, but can consume metals to feed yourself (Copper 0.5 hearts, iron 1 heart, gold 2 hearts), with ingots healing more than raw ( copper ingot 1 heart, iron ingot 2.5 hearts, gold ingot 5 hearts), and you are immune to poison, wither and instant harming effects.",
     "type": "origins:multiple",
     "prevent_eating": {
         "type": "origins:prevent_item_use",
@@ -11,7 +11,6 @@
     "immune": {
         "type": "origins:effect_immunity",
         "effects": [
-            "hunger",
             "regeneration",
             "instant_healing",
             "poison",
